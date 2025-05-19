@@ -15,10 +15,10 @@ class UsuarioController {
     private UsuarioService usuarioService;
     @GetMapping
     public List<Usuario> listar() {
-        return  usuarioService.getUsuarios();
+        return  usuarioService.getAllUsuarios();
     }
     @GetMapping("/{id}")
-    public Usuario getUsuario(@PathVariable int id) {
+    public String getUsuario(@PathVariable int id) {
         return usuarioService.getUsuario(id);
     }
     @PostMapping
@@ -27,7 +27,7 @@ class UsuarioController {
     }
     @PutMapping("/{id}")
     public String updateUsuario(@PathVariable int id, @RequestBody Usuario usuario) {
-        return usuarioService.updateUsuario(usuario,id);
+        return usuarioService.updateUsuario(id, usuario);
     }
     @DeleteMapping("/{id]")
     public String deleteUsuario(@PathVariable int id) {

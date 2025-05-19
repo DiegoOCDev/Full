@@ -1,8 +1,7 @@
 package com.API.API.controller;
 
-import jakarta.persistence.PostUpdate;
-import org.springframework.web.bind.annotation.RestController;
 import com.API.API.model.Estudiante;
+import org.springframework.web.bind.annotation.RestController;
 import com.API.API.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +16,15 @@ class EstudianteController {
     EstudianteService estudianteService;
     @GetMapping
     public List<Estudiante> getEstudiantes() {
-        return estudianteService.getEstudiantes();
+        return estudianteService.getAllEstudiantes();
     }
     @GetMapping("/{id}")
-    public Estudiante getEstudiante(@PathVariable int id) {
+    public String getEstudiante(@PathVariable int id) {
         return estudianteService.getEstudiante(id);
     }
     @PutMapping("/{id}")
     public String updateEstudiante(@RequestBody Estudiante estudiante, @PathVariable int id) {
-        return estudianteService.setEstudiante(estudiante, id);
+        return estudianteService.updateEstudiante(id,estudiante);
     }
     @DeleteMapping("/{id}")
     public String deleteEstudiante(@PathVariable int id) {

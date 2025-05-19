@@ -1,7 +1,5 @@
-package com.API.API;
+package com.API.API.model;
 
-import com.API.API.model.Curso;
-import com.API.API.model.Estudiante;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,8 @@
 package com.API.API.controller;
 
+import com.API.API.model.Gerente;
 import org.springframework.web.bind.annotation.RestController;
-import com.API.API.model.GerenteDeCursos;
-import com.API.API.service.GerenteDeCursosService;
+import com.API.API.service.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,26 +13,26 @@ import java.util.List;
 
 class GerenteDeCursosController {
     @Autowired
-    GerenteDeCursosService gerenteDeCursosService;
+    GerenteService gerenteService;
     @GetMapping
-    public List<GerenteDeCursos> getGerenteDeCursos(){
-        return gerenteDeCursosService.getAllGerenteDeCursos();
+    public List<Gerente> getGerenteDeCursos(){
+        return gerenteService.getAllGerentes();
     }
     @GetMapping("/{id}")
-    public GerenteDeCursos getGerenteDeCursos(@PathVariable int id) {
-        return gerenteDeCursosService.getGerenteDeCursos(id);
+    public String getGerenteDeCursos(@PathVariable int id) {
+        return gerenteService.getGerente(id);
     }
     @PostMapping
-    public GerenteDeCursos addGerenteDeCursos(@RequestBody GerenteDeCursos gerenteDeCursos) {
-        return gerenteDeCursosService.addGerenteDeCursos(gerenteDeCursos);
+    public Gerente addGerenteDeCursos(@RequestBody Gerente gerenteDeCursos) {
+        return gerenteService.addGerente(gerenteDeCursos);
     }
     @PutMapping("/{id}")
-    public String updateGerenteDeCursos(@PathVariable int id, @RequestBody GerenteDeCursos gerenteDeCursos) {
-        return gerenteDeCursosService.updateGerenteDeCursos(id, gerenteDeCursos);
+    public String updateGerenteDeCursos(@PathVariable int id, @RequestBody Gerente gerenteDeCursos) {
+        return gerenteService.updateGerente(id, gerenteDeCursos);
     }
     @DeleteMapping("/{id]")
     public String deleteGerenteDeCursos(@PathVariable int id) {
-        return gerenteDeCursosService.deleteGerenteDeCursosById(id);
+        return gerenteService.deleteGerente(id);
     }
 
 }

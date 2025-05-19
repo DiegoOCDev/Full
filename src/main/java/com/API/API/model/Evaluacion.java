@@ -1,21 +1,31 @@
 package com.API.API.model;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
+@Table(name = "evaluacion")
 public class Evaluacion {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "idEvaluacion", nullable = false)
+    private Integer id;
 
-    private int idCurso;
-    private int idInstructor;
-    private int idEstudiante;
-    private int nota;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCurso")
+    private Curso idCurso;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEstudiante")
+    private Estudiante idEstudiante;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idInstructor")
+    private Instructor idInstructor;
+
+    @Column(name = "notaEvaluacion", nullable = false)
+    private Integer notaEvaluacion;
+
 }

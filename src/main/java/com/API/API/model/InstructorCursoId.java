@@ -1,4 +1,4 @@
-package com.API.API;
+package com.API.API.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

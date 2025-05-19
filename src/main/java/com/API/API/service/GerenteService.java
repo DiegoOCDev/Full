@@ -1,21 +1,21 @@
 package com.API.API.service;
 import java.util.List;
 
-import com.API.API.model.Estudiante;
 import com.API.API.model.Evaluacion;
+import com.API.API.model.Gerente;
+import com.API.API.repository.GerenteRepository;
 import org.springframework.stereotype.Service;
-import com.API.API.repository.EvaluacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class EvaluacionService {
+public class GerenteService {
     @Autowired
-    private EvaluacionRepository repository;
-    public Evaluacion addEvaluacion(Evaluacion evaluacion) {
-        repository.save(evaluacion);
-        return evaluacion;
+    private GerenteRepository repository;
+    public Gerente addGerente(Gerente gerente) {
+        repository.save(gerente);
+        return gerente;
     }
-    public String deleteEvaluacion(int id) {
+    public String deleteGerente(int id) {
         if(repository.existsById(id)){
             repository.deleteById(id);
             return "eliminado con exito";
@@ -23,10 +23,11 @@ public class EvaluacionService {
             return "No se encuentra";
         }
     }
-    public String updateEvaluacion(int id, Evaluacion evaluacion) {
+    public String updateGerente(int id,Gerente gerente) {
         if(repository.existsById(id)){
-            Evaluacion buscado =  repository.findById(id).get();
-            buscado.setNotaEvaluacion(evaluacion.getNotaEvaluacion());
+            Gerente buscado =  repository.findById(id).get();
+            buscado.setCorreoGerente(gerente.getCorreoGerente());
+            buscado.setNombreGerente(gerente.getNombreGerente());
             repository.save(buscado);
             return " actualizado con exito";
         }else{
@@ -34,17 +35,17 @@ public class EvaluacionService {
         }
 
     }
-    public String getEvaluacion(int id){
+    public String getGerente(int id){
         String output="";
         if(repository.existsById(id)){
-            Evaluacion  evaluacion = repository.findById(id).get();
+            Gerente evaluacion = repository.findById(id).get();
             output = evaluacion.toString();
             return output;
         }else{
             return "No se encuentra";
         }
     }
-    public List<Evaluacion> getAllEvaluaciones() {
+    public List<Gerente> getAllGerentes() {
         return repository.findAll();
     }
 }

@@ -1,9 +1,8 @@
 package com.API.API.controller;
 
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
 import com.API.API.model.Curso;
+import org.springframework.web.bind.annotation.RestController;
 import com.API.API.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ class CursoController {
     }
 
     @GetMapping("/{id}")
-    public Curso getCurso(@PathVariable Integer id) {
+    public String getCurso(@PathVariable Integer id) {
         return cursoService.getCurso(id);
     }
     @PostMapping
@@ -37,7 +36,7 @@ class CursoController {
     }
     @PutMapping("/{id}")
     public String updateCurso(@PathVariable Integer id, @RequestBody Curso curso){
-        return cursoService.updateCurso(curso, id);
+        return cursoService.updateCurso(id,curso);
     }
 
 

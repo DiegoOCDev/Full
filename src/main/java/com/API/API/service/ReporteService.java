@@ -1,29 +1,60 @@
 package com.API.API.service;
 import java.util.List;
-import java.util.ArrayList;
-import org.springframework.stereotype.Service;
+
+import com.API.API.model.Instructor;
 import com.API.API.model.Reporte;
+import com.API.API.repository.InstructorRepository;
+import org.springframework.stereotype.Service;
 import com.API.API.repository.ReporteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ReporteService {
     @Autowired
-    private ReporteRepository reporteRepository;
+    private ReporteRepository repository;
+
     public Reporte addReporte(Reporte reporte) {
-        return reporteRepository.AddReporte(reporte);
+        repository.save(reporte);
+        return reporte;
     }
-    public Reporte getReporte(int id) {
-        return reporteRepository.GetReporte(id);
-    }
-    public String updateReporte(Reporte reporte, int id) {
-        return reporteRepository.UpdateReporte(id,reporte);
-    }
+
     public String deleteReporte(int id) {
-        return reporteRepository.DeleteReporte(id);
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return "eliminado con exito";
+        } else {
+            return "No se encuentra";
+        }
     }
-    public List<Reporte> getReportes() {
-        return reporteRepository.GetReportes();
+
+    public String updateReporte(int id, Reporte Reporte) {
+        if (repository.existsById(id)) {
+            Reporte buscado = repository.findById(id).get();
+            buscado.setDatosReporte(Reporte.getDatosReporte());
+            buscado.setFechaReporte(Reporte.getFechaReporte());
+            buscado.setDescripcionReporte(Reporte.getDescripcionReporte());
+            buscado.setTipoReporte(Reporte.getTipoReporte());
+
+            repository.save(buscado);
+            return " actualizado con exito";
+        } else {
+            return "No se encuentra ";
+        }
+
+    }
+
+    public String getReporte(int id) {
+        String output = "";
+        if (repository.existsById(id)) {
+            Reporte reporte = repository.findById(id).get();
+            output = reporte.toString();
+            return output;
+        } else {
+            return "No se encuentra";
+        }
+    }
+
+    public List<Reporte> getAllReportes() {
+        return repository.findAll();
     }
 }

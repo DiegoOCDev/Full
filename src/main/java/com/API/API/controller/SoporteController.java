@@ -1,7 +1,7 @@
 package com.API.API.controller;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.API.API.model.Soporte;
+import org.springframework.web.bind.annotation.RestController;
 import com.API.API.service.SoporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ class SoporteController {
     SoporteService soporteService;
     @GetMapping
     public List<Soporte> listar() {
-        return  soporteService.getSoportes();
+        return  soporteService.getAllSoportes();
     }
     @GetMapping("/{id}")
-    public Soporte getSoporte(@PathVariable int id) {
+    public String getSoporte(@PathVariable int id) {
         return soporteService.getSoporte(id);
     }
     @PostMapping
@@ -28,7 +28,7 @@ class SoporteController {
     }
     @PutMapping("/{id}")
     public String updateSoporte(@RequestBody Soporte soporte, @PathVariable int id){
-        return soporteService.updateSoporte(soporte, id);
+        return soporteService.updateSoporte(id,soporte );
     }
     @DeleteMapping("/{id]")
     public String deleteSoporte(@PathVariable int id) {

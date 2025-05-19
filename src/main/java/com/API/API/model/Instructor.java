@@ -1,19 +1,25 @@
 package com.API.API.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
+@Table(name = "instructor")
 public class Instructor {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "idInstructor", nullable = false)
+    private Integer id;
 
-    private String nombre;
+    @Column(name = "nombreInstructor", nullable = false, length = 100)
+    private String nombreInstructor;
+
+    @Column(name = "correoInstructor", nullable = false, length = 100)
+    private String correoInstructor;
+
 }

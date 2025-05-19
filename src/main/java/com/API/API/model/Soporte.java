@@ -1,20 +1,25 @@
 package com.API.API.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
+@Table(name = "soporte")
 public class Soporte {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "idSoporte", nullable = false)
+    private Integer id;
 
-    private String nombre;
-    private String correo;
+    @Column(name = "correoSoporte", nullable = false, length = 100)
+    private String correoSoporte;
+
+    @Column(name = "nombreSoporte", nullable = false, length = 100)
+    private String nombreSoporte;
+
 }

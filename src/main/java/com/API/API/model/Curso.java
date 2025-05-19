@@ -1,27 +1,37 @@
 package com.API.API.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
+@Table(name = "curso")
 public class Curso {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "idCurso", nullable = false)
+    private Integer id;
 
-    private String titulo;
-    private String descripcion;
-    private String estado;
+    @Column(name = "tituloCurso", nullable = false, length = 100)
+    private String tituloCurso;
+
+    @Column(name = "descripcionCurso", nullable = false, length = 100)
+    private String descripcionCurso;
+
+    @Column(name = "estadoCurso", nullable = false, length = 100)
+    private String estadoCurso;
+
+    @Column(name = "fecha_inicio")
     private LocalDate fechaInicio;
+
+    @Column(name = "fecha_fin")
     private LocalDate fechaFin;
 
-    private int idGerente;  // Se puede usar como relación si quieres luego
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idGerente")
+    private Gerente idGerente;
+
 }

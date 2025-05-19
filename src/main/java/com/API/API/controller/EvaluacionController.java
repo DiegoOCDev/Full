@@ -1,7 +1,7 @@
 package com.API.API.controller;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.API.API.model.Evaluacion;
+import org.springframework.web.bind.annotation.RestController;
 import com.API.API.service.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ class EvaluacionController {
     EvaluacionService evaluacionService;
     @GetMapping
     public List<Evaluacion> getEvaluacions() {
-        return evaluacionService.getEvaluaciones();
+        return evaluacionService.getAllEvaluaciones();
     }
     @GetMapping("/{id}")
-    public Evaluacion getEvaluacion(@PathVariable int id) {
+    public String getEvaluacion(@PathVariable int id) {
         return evaluacionService.getEvaluacion(id);
     }
     @PostMapping
@@ -28,7 +28,7 @@ class EvaluacionController {
     }
     @PutMapping("/{id}")
     public String updateEvaluacion(@PathVariable int id, @RequestBody Evaluacion evaluacion) {
-        return evaluacionService.updateEvaluacion(evaluacion, id);
+        return evaluacionService.updateEvaluacion(id,evaluacion);
     }
     @DeleteMapping("/{id}")
     public String deleteEvaluacion(@PathVariable int id) {

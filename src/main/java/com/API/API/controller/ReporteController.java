@@ -1,7 +1,7 @@
 package com.API.API.controller;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.API.API.model.Reporte;
+import org.springframework.web.bind.annotation.RestController;
 import com.API.API.service.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ class ReporteController {
     private ReporteService reporteService;
     @GetMapping
     public List<Reporte> getReportes() {
-        return reporteService.getReportes();
+        return reporteService.getAllReportes();
     }
     @GetMapping("/{id}")
-    public Reporte getReporteById(@PathVariable int id) {
+    public String  getReporteById(@PathVariable int id) {
         return reporteService.getReporte(id);
     }
     @PostMapping
@@ -28,7 +28,7 @@ class ReporteController {
     }
     @PutMapping("/{id}")
     public String updateReporte(@PathVariable int id, @RequestBody Reporte reporte) {
-        return reporteService.updateReporte(reporte,id);
+        return reporteService.updateReporte(id,reporte);
     }
     @DeleteMapping("/{id]")
     public String deleteReporte(@PathVariable int id) {
